@@ -15,6 +15,7 @@
 		616F60E51D16AD1A0002747C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 616F60E31D16AD1A0002747C /* LaunchScreen.storyboard */; };
 		616F60F01D16AD1A0002747C /* AVFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F60EF1D16AD1A0002747C /* AVFoundationTests.m */; };
 		616F60FB1D16AD1A0002747C /* AVFoundationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F60FA1D16AD1A0002747C /* AVFoundationUITests.m */; };
+		616F61091D16C3BB0002747C /* Category.plist in Resources */ = {isa = PBXBuildFile; fileRef = 616F61081D16C3BB0002747C /* Category.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		616F60F61D16AD1A0002747C /* AVFoundationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AVFoundationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		616F60FA1D16AD1A0002747C /* AVFoundationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVFoundationUITests.m; sourceTree = "<group>"; };
 		616F60FC1D16AD1A0002747C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		616F61081D16C3BB0002747C /* Category.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Category.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				616F60D91D16AD1A0002747C /* AppDelegate.m */,
 				616F60DB1D16AD1A0002747C /* ViewController.h */,
 				616F60DC1D16AD1A0002747C /* ViewController.m */,
+				616F61081D16C3BB0002747C /* Category.plist */,
 				616F60DE1D16AD1A0002747C /* Main.storyboard */,
 				616F60E11D16AD1A0002747C /* Assets.xcassets */,
 				616F60E31D16AD1A0002747C /* LaunchScreen.storyboard */,
@@ -245,6 +248,7 @@
 			files = (
 				616F60E51D16AD1A0002747C /* LaunchScreen.storyboard in Resources */,
 				616F60E21D16AD1A0002747C /* Assets.xcassets in Resources */,
+				616F61091D16C3BB0002747C /* Category.plist in Resources */,
 				616F60E01D16AD1A0002747C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
