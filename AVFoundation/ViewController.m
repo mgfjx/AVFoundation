@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "XXLAudioSessionController.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>{
     
@@ -61,6 +62,37 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    switch (indexPath.row) {
+        case 0:
+            [self loadAudioRecordView];
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+#pragma mark - 录音
+- (void)loadAudioRecordView{
+    
+    XXLAudioSessionController *vc = [[XXLAudioSessionController alloc] initWithNibName:@"XXLAudioSessionController" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

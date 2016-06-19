@@ -16,6 +16,8 @@
 		616F60F01D16AD1A0002747C /* AVFoundationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F60EF1D16AD1A0002747C /* AVFoundationTests.m */; };
 		616F60FB1D16AD1A0002747C /* AVFoundationUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F60FA1D16AD1A0002747C /* AVFoundationUITests.m */; };
 		616F61091D16C3BB0002747C /* Category.plist in Resources */ = {isa = PBXBuildFile; fileRef = 616F61081D16C3BB0002747C /* Category.plist */; };
+		616F61131D16C9910002747C /* XXLAudioSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F61111D16C9910002747C /* XXLAudioSessionController.m */; };
+		616F61141D16C9910002747C /* XXLAudioSessionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 616F61121D16C9910002747C /* XXLAudioSessionController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		616F60FA1D16AD1A0002747C /* AVFoundationUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVFoundationUITests.m; sourceTree = "<group>"; };
 		616F60FC1D16AD1A0002747C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		616F61081D16C3BB0002747C /* Category.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Category.plist; sourceTree = "<group>"; };
+		616F61101D16C9910002747C /* XXLAudioSessionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLAudioSessionController.h; sourceTree = "<group>"; };
+		616F61111D16C9910002747C /* XXLAudioSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLAudioSessionController.m; sourceTree = "<group>"; };
+		616F61121D16C9910002747C /* XXLAudioSessionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXLAudioSessionController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +108,7 @@
 		616F60D41D16AD1A0002747C /* AVFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				616F610F1D16C9790002747C /* AudioRecord */,
 				616F60D81D16AD1A0002747C /* AppDelegate.h */,
 				616F60D91D16AD1A0002747C /* AppDelegate.m */,
 				616F60DB1D16AD1A0002747C /* ViewController.h */,
@@ -141,6 +147,16 @@
 				616F60FC1D16AD1A0002747C /* Info.plist */,
 			);
 			path = AVFoundationUITests;
+			sourceTree = "<group>";
+		};
+		616F610F1D16C9790002747C /* AudioRecord */ = {
+			isa = PBXGroup;
+			children = (
+				616F61101D16C9910002747C /* XXLAudioSessionController.h */,
+				616F61111D16C9910002747C /* XXLAudioSessionController.m */,
+				616F61121D16C9910002747C /* XXLAudioSessionController.xib */,
+			);
+			path = AudioRecord;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +264,7 @@
 			files = (
 				616F60E51D16AD1A0002747C /* LaunchScreen.storyboard in Resources */,
 				616F60E21D16AD1A0002747C /* Assets.xcassets in Resources */,
+				616F61141D16C9910002747C /* XXLAudioSessionController.xib in Resources */,
 				616F61091D16C3BB0002747C /* Category.plist in Resources */,
 				616F60E01D16AD1A0002747C /* Main.storyboard in Resources */,
 			);
@@ -274,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				616F61131D16C9910002747C /* XXLAudioSessionController.m in Sources */,
 				616F60DD1D16AD1A0002747C /* ViewController.m in Sources */,
 				616F60DA1D16AD1A0002747C /* AppDelegate.m in Sources */,
 				616F60D71D16AD1A0002747C /* main.m in Sources */,
