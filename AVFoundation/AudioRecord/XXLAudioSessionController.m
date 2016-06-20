@@ -8,6 +8,7 @@
 
 #import "XXLAudioSessionController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "XXLAudioListController.h"
 
 @interface XXLAudioSessionController (){
     AVAudioSession *audioSession;
@@ -32,8 +33,6 @@
         NSLog(@"setActive:%@",error.userInfo);
     }
     
-    [self prepareRecord];
-    
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(100, 100, 100, 100);
@@ -43,6 +42,10 @@
     [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:btn];
+    
+    UIBarButtonItem *rightBar = [[UIBarButtonItem alloc] initWithTitle:@"列表" style:UIBarButtonItemStyleDone target:self action:@selector(loadAudioList:)];
+    
+    self.navigationItem.rightBarButtonItem = rightBar;
     
 }
 
@@ -54,6 +57,7 @@
         [audioRecorder stop];
     }else{
         sender.selected = YES;
+        [self prepareRecord];
         [audioRecorder record];
     }
     
@@ -91,6 +95,14 @@
     }
     
     [audioRecorder prepareToRecord];
+}
+
+
+- (void)loadAudioList:(UIBarButtonItem *)item{
+    
+    XXLAudioListController *vc = [[XXLAudioListController alloc] init];
+    [self.navigationController pushViewController:vc  animated:YES];
+    
 }
 
 @end
