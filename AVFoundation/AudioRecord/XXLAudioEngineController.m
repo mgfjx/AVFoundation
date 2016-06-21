@@ -41,8 +41,40 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self setAudioEffect];
+//    [self setAudioEffect];
+    [self addAudioFileEffect];
     
+}
+
+- (void)addAudioFileEffect{
+    
+    AVAudioEngine *engine = self.engine;
+    
+    NSString *path = @"/Users/xiexiaolong1/Desktop/hxhx.mp3";
+    NSURL *url = [NSURL fileURLWithPath:path];
+    
+    AVAudioFile *audioFile = [[AVAudioFile alloc] initForReading:url error:nil];
+    
+    AVAudioPlayerNode *playerNode = [[AVAudioPlayerNode alloc] init];
+    
+    [engine attachNode:playerNode];
+    
+    [playerNode scheduleFile:audioFile atTime:nil completionHandler:nil];
+    
+    playerNode.volume = 1.0;
+    
+    AVAudioUnitReverb *reverb = [[AVAudioUnitReverb alloc] init];
+    [reverb loadFactoryPreset:AVAudioUnitReverbPresetSmallRoom];
+    reverb.wetDryMix = 80;
+    
+    [engine attachNode:reverb];
+    
+    [engine connect:playerNode to:reverb format:audioFile.processingFormat];
+    [engine connect:reverb to:engine.outputNode format:audioFile.processingFormat];
+    
+    [engine startAndReturnError:nil];
+    
+    [playerNode play];
 }
 
 - (void)setAudioEffect{
