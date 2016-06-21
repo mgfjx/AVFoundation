@@ -79,8 +79,17 @@
     
 //    AVAudioUnitTimeEffect *timeEffect = [[AVAudioUnitTimeEffect alloc] initWithAudioComponentDescription:acd];
     
-     
-    [self loadAudioUnit:reverb];
+    
+    AVAudioUnitEQ *eq = [[AVAudioUnitEQ alloc] initWithNumberOfBands:1];
+    
+    AVAudioUnitEQFilterParameters *filter = eq.bands.firstObject;
+    filter.filterType = AVAudioUnitEQFilterTypeLowPass;
+    filter.bandwidth = 10;
+    filter.gain = 20;
+    
+    
+//    [self loadAudioUnit:eq];
+    [self loadAudioUnits:nil];
     
 }
 
@@ -105,6 +114,48 @@
     
     //        2.效果器连接输出口
     [engine connect:unit to:output format:[input inputFormatForBus:0]];
+    
+    BOOL isSuccess = [engine startAndReturnError:nil];
+    
+    if (isSuccess) {
+        NSLog(@"audioEngin启动成功!");
+    }
+    
+}
+
+- (void)loadAudioUnits:(NSArray *)units{
+    
+    AVAudioUnitDistortion *distortion = [[AVAudioUnitDistortion alloc] init];
+    [distortion loadFactoryPreset:AVAudioUnitDistortionPresetSpeechGoldenPi];
+    distortion.preGain = 1;
+    distortion.wetDryMix = 40;
+    
+    AVAudioUnitReverb *reverb = [[AVAudioUnitReverb alloc] init];
+    [reverb loadFactoryPreset:AVAudioUnitReverbPresetLargeRoom];
+    reverb.wetDryMix = 40;
+    
+    AVAudioEngine *engine = self.engine;
+    
+    //音频输入口
+    AVAudioInputNode *input = engine.inputNode;
+    //音频输出口
+    AVAudioOutputNode *output = engine.outputNode;
+    
+    //把混响附着到音频引擎
+    [engine attachNode:distortion];
+    [engine attachNode:reverb];
+    
+    //使用音频引擎连接各个节点
+    
+    //        1.输入口连接效果器可对比咱们的图来看
+    
+    //        Format:格式是咱们输入口在主线的一个格式
+    [engine connect:input to:distortion format:[input inputFormatForBus:0]];
+    
+    //        2.效果器连接输出口
+    [engine connect:distortion to:reverb format:[input inputFormatForBus:0]];
+    
+    [engine connect:reverb to:output format:[input inputFormatForBus:0]];
     
     BOOL isSuccess = [engine startAndReturnError:nil];
     
