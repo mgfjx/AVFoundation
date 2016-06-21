@@ -39,10 +39,16 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+//    self.view.backgroundColor = [UIColor whiteColor];
     
-//    [self setAudioEffect];
+    
     [self addAudioFileEffect];
+    
+}
+
+- (void)initViews{
+    
+    
     
 }
 
@@ -83,54 +89,6 @@
     [playerNode play];
 }
 
-- (void)setAudioEffect{
-    
-    AVAudioUnitReverb *reverb = self.reverb;
-    
-    //设置混响效果器为教堂的效果
-    [reverb loadFactoryPreset:AVAudioUnitReverbPresetCathedral];
-    
-    //设置混响的干湿比是从0-100的值干湿比影响到咱们混响与原声的一个混合比例
-    reverb.wetDryMix = 100;
-    
-    
-    AVAudioUnitDelay *delay = [[AVAudioUnitDelay alloc] init];
-    delay.delayTime = 0.5;
-    delay.wetDryMix = 10;
-    
-    
-    AudioComponentDescription acd;
-    //componentType类型是相对应的，什么样的功能设置什么样的类型，componentSubType是根据componentType设置的。
-    acd.componentType = kAudioUnitType_FormatConverter;
-    acd.componentSubType = kAudioUnitSubType_Delay;
-    //如果没有一个明确指定的值，那么它必须被设置为0
-    acd.componentFlags = 0;
-    //如果没有一个明确指定的值，那么它必须被设置为0
-    acd.componentFlagsMask = 0;
-    //厂商的身份验证
-    acd.componentManufacturer = kAudioUnitManufacturer_Apple;
-    
-     /*
-    AVAudioUnitGenerator *generator = [[AVAudioUnitGenerator alloc] initWithAudioComponentDescription:acd];
-    generator.bypass = YES;
-    */
-    
-//    AVAudioUnitTimeEffect *timeEffect = [[AVAudioUnitTimeEffect alloc] initWithAudioComponentDescription:acd];
-    
-    
-    AVAudioUnitEQ *eq = [[AVAudioUnitEQ alloc] initWithNumberOfBands:1];
-    
-    AVAudioUnitEQFilterParameters *filter = eq.bands.firstObject;
-    filter.filterType = AVAudioUnitEQFilterTypeLowPass;
-    filter.bandwidth = 10;
-    filter.gain = 20;
-    
-    
-//    [self loadAudioUnit:eq];
-    [self loadAudioUnits:nil];
-    
-}
-
 - (void)loadAudioUnit:(AVAudioUnit *)unit{
     
     AVAudioEngine *engine = self.engine;
@@ -152,48 +110,6 @@
     
     //        2.效果器连接输出口
     [engine connect:unit to:output format:[input inputFormatForBus:0]];
-    
-    BOOL isSuccess = [engine startAndReturnError:nil];
-    
-    if (isSuccess) {
-        NSLog(@"audioEngin启动成功!");
-    }
-    
-}
-
-- (void)loadAudioUnits:(NSArray *)units{
-    
-    AVAudioUnitDistortion *distortion = [[AVAudioUnitDistortion alloc] init];
-    [distortion loadFactoryPreset:AVAudioUnitDistortionPresetSpeechGoldenPi];
-    distortion.preGain = 1;
-    distortion.wetDryMix = 40;
-    
-    AVAudioUnitReverb *reverb = [[AVAudioUnitReverb alloc] init];
-    [reverb loadFactoryPreset:AVAudioUnitReverbPresetLargeRoom];
-    reverb.wetDryMix = 40;
-    
-    AVAudioEngine *engine = self.engine;
-    
-    //音频输入口
-    AVAudioInputNode *input = engine.inputNode;
-    //音频输出口
-    AVAudioOutputNode *output = engine.outputNode;
-    
-    //把混响附着到音频引擎
-    [engine attachNode:distortion];
-    [engine attachNode:reverb];
-    
-    //使用音频引擎连接各个节点
-    
-    //        1.输入口连接效果器可对比咱们的图来看
-    
-    //        Format:格式是咱们输入口在主线的一个格式
-    [engine connect:input to:distortion format:[input inputFormatForBus:0]];
-    
-    //        2.效果器连接输出口
-    [engine connect:distortion to:reverb format:[input inputFormatForBus:0]];
-    
-    [engine connect:reverb to:output format:[input inputFormatForBus:0]];
     
     BOOL isSuccess = [engine startAndReturnError:nil];
     

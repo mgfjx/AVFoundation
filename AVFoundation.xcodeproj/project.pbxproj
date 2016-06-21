@@ -19,6 +19,7 @@
 		616F61131D16C9910002747C /* XXLAudioSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F61111D16C9910002747C /* XXLAudioSessionController.m */; };
 		616F61141D16C9910002747C /* XXLAudioSessionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 616F61121D16C9910002747C /* XXLAudioSessionController.xib */; };
 		EC33F7F11D1909C900F6BDDE /* XXLAudioEngineController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33F7F01D1909C900F6BDDE /* XXLAudioEngineController.m */; };
+		EC33F7F51D19401300F6BDDE /* XXLAudioEngineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC33F7F41D19401300F6BDDE /* XXLAudioEngineController.xib */; };
 		EC75C2921D17700D001611DE /* XXLAudioListController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC75C2911D17700D001611DE /* XXLAudioListController.m */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		616F61121D16C9910002747C /* XXLAudioSessionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXLAudioSessionController.xib; sourceTree = "<group>"; };
 		EC33F7EF1D1909C900F6BDDE /* XXLAudioEngineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLAudioEngineController.h; sourceTree = "<group>"; };
 		EC33F7F01D1909C900F6BDDE /* XXLAudioEngineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLAudioEngineController.m; sourceTree = "<group>"; };
+		EC33F7F41D19401300F6BDDE /* XXLAudioEngineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXLAudioEngineController.xib; sourceTree = "<group>"; };
 		EC75C2901D17700D001611DE /* XXLAudioListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLAudioListController.h; sourceTree = "<group>"; };
 		EC75C2911D17700D001611DE /* XXLAudioListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLAudioListController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -165,6 +167,7 @@
 				EC75C2911D17700D001611DE /* XXLAudioListController.m */,
 				EC33F7EF1D1909C900F6BDDE /* XXLAudioEngineController.h */,
 				EC33F7F01D1909C900F6BDDE /* XXLAudioEngineController.m */,
+				EC33F7F41D19401300F6BDDE /* XXLAudioEngineController.xib */,
 			);
 			path = AudioRecord;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				616F61141D16C9910002747C /* XXLAudioSessionController.xib in Resources */,
 				616F61091D16C3BB0002747C /* Category.plist in Resources */,
 				616F60E01D16AD1A0002747C /* Main.storyboard in Resources */,
+				EC33F7F51D19401300F6BDDE /* XXLAudioEngineController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
