@@ -64,10 +64,16 @@
     playerNode.volume = 1.0;
     
     AVAudioUnitReverb *reverb = [[AVAudioUnitReverb alloc] init];
-    [reverb loadFactoryPreset:AVAudioUnitReverbPresetSmallRoom];
+    [reverb loadFactoryPreset:0];
     reverb.wetDryMix = 80;
     
     [engine attachNode:reverb];
+    
+    AVAudioUnitDelay *delay = [[AVAudioUnitDelay alloc] init];
+    delay.delayTime = 0.1;
+    delay.wetDryMix = 80;
+    
+    [engine attachNode:delay];
     
     [engine connect:playerNode to:reverb format:audioFile.processingFormat];
     [engine connect:reverb to:engine.outputNode format:audioFile.processingFormat];
