@@ -9,6 +9,7 @@
 #import "XXLAudioSessionController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "XXLAudioListController.h"
+#import "XXLAudioEngineController.h"
 
 @interface XXLAudioSessionController (){
     AVAudioSession *audioSession;
@@ -47,6 +48,7 @@
     
     self.navigationItem.rightBarButtonItem = rightBar;
     
+    [self createAudioEffectBtn];
 }
 
 - (void)btnClicked:(UIButton *)sender{
@@ -60,6 +62,27 @@
         [self prepareRecord];
         [audioRecorder record];
     }
+    
+}
+
+#pragma mark - 音效
+- (void)createAudioEffectBtn{
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(0, 74, 100, 40);
+    [btn setTitle:@"AudioEffect" forState:UIControlStateNormal];
+    [btn setTitle:@"AudioEffect" forState:UIControlStateSelected];
+    btn.backgroundColor = [UIColor lightGrayColor];
+    [btn addTarget:self action:@selector(audioEffect:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:btn];
+    
+}
+
+- (void)audioEffect:(UIButton *)sender{
+    
+    XXLAudioEngineController *vc = [[XXLAudioEngineController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
