@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, AudioEngineCellStyle){
 @protocol XXLAudioEngineCellDelegate <NSObject>
 
 - (void)onWetDryMixValueChange:(float)value;
+- (void)onDelayTimeValueChange:(float)value;//0-2s
 - (void)onFactoryPresetValueChange:(NSInteger)value;
 
 @end

@@ -12,10 +12,11 @@
 
 @interface XXLAudioEngineController ()<UITableViewDelegate,UITableViewDataSource,XXLAudioEngineCellDelegate>{
     
-    UIButton *playBtn;
     CGFloat wetDryMixValue;
     NSInteger factoryPresetValue;
+    CGFloat delayTimeValue;
     
+    UIButton *playBtn;
     UILabel *wetDryValueLabel;
 }
 
@@ -127,11 +128,12 @@
     reverb.wetDryMix = wetDryMixValue;
     
     //set delay unit
-    delay.delayTime = 0.1;
-    delay.wetDryMix = 100;
+    delay.delayTime = delayTimeValue;
+    delay.wetDryMix = 50;
     
     [engine connect:player to:reverb format:audioFile.processingFormat];
-    [engine connect:reverb to:engine.outputNode format:audioFile.processingFormat];
+    [engine connect:reverb to:delay format:audioFile.processingFormat];
+    [engine connect:delay to:engine.outputNode format:audioFile.processingFormat];
     
     BOOL isSuccess = [engine startAndReturnError:nil];
     
@@ -160,16 +162,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *identifier = @"cell";
-    XXLAudioEngineCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    XXLAudioEngineCell *cell = nil;
     
-    if (!cell) {
+    if (indexPath.row == 0) {
         cell = [[XXLAudioEngineCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier category:AudioEngineCellStyleReverb];
+    }
+    
+    if (indexPath.row == 1) {
+        cell = [[XXLAudioEngineCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier category:AudioEngineCellStyleDelay];
     }
     
     cell.delegate = self;
@@ -183,7 +189,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 100;
+    return 110;
     
 }
 
@@ -198,6 +204,13 @@
 - (void)onFactoryPresetValueChange:(NSInteger)value{
     
     factoryPresetValue = value;
+    [self prepareAudioEffect];
+    
+}
+
+- (void)onDelayTimeValueChange:(float)value{
+    
+    delayTimeValue = value;
     [self prepareAudioEffect];
     
 }
