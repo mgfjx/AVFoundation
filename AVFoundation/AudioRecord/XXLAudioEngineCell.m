@@ -157,7 +157,7 @@
 - (void)layoutReverbCategory{
     
     wetDryMixLabel.frame = CGRectMake(8, 8, 70, 40);
-    wetSlider.frame = CGRectMake(CGRectGetMaxX(wetDryMixLabel.frame) + 8, CGRectGetMinY(wetDryMixLabel.frame), self.bounds.size.width - CGRectGetMaxX(wetDryMixLabel.frame) - 8 - 25, CGRectGetHeight(wetDryMixLabel.frame));
+    wetSlider.frame = CGRectMake(CGRectGetMaxX(wetDryMixLabel.frame) + 8, CGRectGetMinY(wetDryMixLabel.frame), self.bounds.size.width - CGRectGetMaxX(wetDryMixLabel.frame) - 8 - 25 - 8, CGRectGetHeight(wetDryMixLabel.frame));
     wetDryValueLabel.frame = CGRectMake(CGRectGetMaxX(wetSlider.frame) + 8, CGRectGetMinY(wetSlider.frame), 25, 40);
     factorySteper.frame = CGRectMake(CGRectGetMinX(wetDryMixLabel.frame), CGRectGetMaxY(wetDryValueLabel.frame), 40, 40);
 }
