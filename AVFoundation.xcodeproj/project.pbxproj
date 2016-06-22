@@ -19,7 +19,10 @@
 		616F61131D16C9910002747C /* XXLAudioSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 616F61111D16C9910002747C /* XXLAudioSessionController.m */; };
 		616F61141D16C9910002747C /* XXLAudioSessionController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 616F61121D16C9910002747C /* XXLAudioSessionController.xib */; };
 		EC33F7F11D1909C900F6BDDE /* XXLAudioEngineController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC33F7F01D1909C900F6BDDE /* XXLAudioEngineController.m */; };
-		EC33F7F51D19401300F6BDDE /* XXLAudioEngineController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC33F7F41D19401300F6BDDE /* XXLAudioEngineController.xib */; };
+		EC71BA381D1A269200F46E4C /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = EC71BA361D1A269200F46E4C /* pause.png */; };
+		EC71BA391D1A269200F46E4C /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = EC71BA371D1A269200F46E4C /* play.png */; };
+		EC71BA441D1A314200F46E4C /* sliderBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = EC71BA421D1A314200F46E4C /* sliderBtn.png */; };
+		EC71BA451D1A314200F46E4C /* sliderBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC71BA431D1A314200F46E4C /* sliderBtn@2x.png */; };
 		EC75C2921D17700D001611DE /* XXLAudioListController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC75C2911D17700D001611DE /* XXLAudioListController.m */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +66,10 @@
 		616F61121D16C9910002747C /* XXLAudioSessionController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXLAudioSessionController.xib; sourceTree = "<group>"; };
 		EC33F7EF1D1909C900F6BDDE /* XXLAudioEngineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLAudioEngineController.h; sourceTree = "<group>"; };
 		EC33F7F01D1909C900F6BDDE /* XXLAudioEngineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLAudioEngineController.m; sourceTree = "<group>"; };
-		EC33F7F41D19401300F6BDDE /* XXLAudioEngineController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XXLAudioEngineController.xib; sourceTree = "<group>"; };
+		EC71BA361D1A269200F46E4C /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		EC71BA371D1A269200F46E4C /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		EC71BA421D1A314200F46E4C /* sliderBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sliderBtn.png; sourceTree = "<group>"; };
+		EC71BA431D1A314200F46E4C /* sliderBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sliderBtn@2x.png"; sourceTree = "<group>"; };
 		EC75C2901D17700D001611DE /* XXLAudioListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXLAudioListController.h; sourceTree = "<group>"; };
 		EC75C2911D17700D001611DE /* XXLAudioListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXLAudioListController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,6 +122,7 @@
 		616F60D41D16AD1A0002747C /* AVFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				EC71BA351D1A269200F46E4C /* resource */,
 				616F610F1D16C9790002747C /* AudioRecord */,
 				616F60D81D16AD1A0002747C /* AppDelegate.h */,
 				616F60D91D16AD1A0002747C /* AppDelegate.m */,
@@ -167,9 +174,19 @@
 				EC75C2911D17700D001611DE /* XXLAudioListController.m */,
 				EC33F7EF1D1909C900F6BDDE /* XXLAudioEngineController.h */,
 				EC33F7F01D1909C900F6BDDE /* XXLAudioEngineController.m */,
-				EC33F7F41D19401300F6BDDE /* XXLAudioEngineController.xib */,
 			);
 			path = AudioRecord;
+			sourceTree = "<group>";
+		};
+		EC71BA351D1A269200F46E4C /* resource */ = {
+			isa = PBXGroup;
+			children = (
+				EC71BA361D1A269200F46E4C /* pause.png */,
+				EC71BA371D1A269200F46E4C /* play.png */,
+				EC71BA421D1A314200F46E4C /* sliderBtn.png */,
+				EC71BA431D1A314200F46E4C /* sliderBtn@2x.png */,
+			);
+			path = resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,11 +294,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				616F60E51D16AD1A0002747C /* LaunchScreen.storyboard in Resources */,
+				EC71BA391D1A269200F46E4C /* play.png in Resources */,
 				616F60E21D16AD1A0002747C /* Assets.xcassets in Resources */,
 				616F61141D16C9910002747C /* XXLAudioSessionController.xib in Resources */,
+				EC71BA451D1A314200F46E4C /* sliderBtn@2x.png in Resources */,
+				EC71BA381D1A269200F46E4C /* pause.png in Resources */,
 				616F61091D16C3BB0002747C /* Category.plist in Resources */,
 				616F60E01D16AD1A0002747C /* Main.storyboard in Resources */,
-				EC33F7F51D19401300F6BDDE /* XXLAudioEngineController.xib in Resources */,
+				EC71BA441D1A314200F46E4C /* sliderBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

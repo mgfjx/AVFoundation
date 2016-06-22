@@ -81,7 +81,7 @@
 
 - (void)audioEffect:(UIButton *)sender{
     
-    XXLAudioEngineController *vc = [[XXLAudioEngineController alloc] initWithNibName:@"XXLAudioEngineController" bundle:[NSBundle mainBundle]];
+    XXLAudioEngineController *vc = [[XXLAudioEngineController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
     
 }
