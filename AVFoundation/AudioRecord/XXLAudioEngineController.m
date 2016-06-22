@@ -8,11 +8,13 @@
 
 #import "XXLAudioEngineController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "XXLAudioEngineCell.h"
 
-@interface XXLAudioEngineController (){
+@interface XXLAudioEngineController ()<UITableViewDelegate,UITableViewDataSource,XXLAudioEngineCellDelegate>{
     
     UIButton *playBtn;
-    UISlider *wetSlider;
+    CGFloat wetDryMixValue;
+    NSInteger factoryPresetValue;
     
     UILabel *wetDryValueLabel;
 }
@@ -101,35 +103,17 @@
     
     playBtn = btn;
     
-    //wetDryMix label
-    UILabel *wetLabel = [[UILabel alloc] init];
-    wetLabel.frame = CGRectMake(8, CGRectGetMaxY(btn.frame) + 20, 70, 40);
-    wetLabel.text = @"wetDryMix:";
-    wetLabel.font = [UIFont systemFontOfSize:13];
-    [self.view addSubview:wetLabel];
     
-    //wetDryMix slider
-    UISlider *slider = [[UISlider alloc] init];
-    slider.frame = CGRectMake(CGRectGetMaxX(wetLabel.frame) + 8, CGRectGetMinY(wetLabel.frame), self.view.bounds.size.width - (CGRectGetMaxX(wetLabel.frame) + 8)*2, CGRectGetHeight(wetLabel.frame));
-    UIImage *image = [UIImage imageNamed:@"sliderBtn"];
-    [slider setThumbImage:image forState:UIControlStateNormal];
-    slider.minimumValue = 1;
-    slider.maximumValue = 100;
-    [slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:slider];
+    UITableView *table = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    table.delegate = self;
+    table.dataSource = self;
+    [self.view addSubview:table];
     
-    wetSlider = slider;
     
-    //wetDryMix valueLabel
-    UILabel *valueLabel = [[UILabel alloc] init];
-    valueLabel.frame = CGRectMake(CGRectGetMaxX(slider.frame) + 8, CGRectGetMinY(slider.frame), 60, 40);
-    valueLabel.font = [UIFont systemFontOfSize:13];
-    [self.view addSubview:valueLabel];
-    
-    wetDryValueLabel = valueLabel;
-    
+     
 }
 
+#pragma mark - 准备音效
 - (void)prepareAudioEffect{
     
     AVAudioEngine *engine     = self.engine;
@@ -139,8 +123,8 @@
     AVAudioUnitDelay *delay   = self.delay;
     
     //set reverb unit
-//    [reverb loadFactoryPreset:1];
-    reverb.wetDryMix = wetSlider.value;
+    [reverb loadFactoryPreset:factoryPresetValue];
+    reverb.wetDryMix = wetDryMixValue;
     
     //set delay unit
     delay.delayTime = 0.1;
@@ -156,36 +140,6 @@
     }
 }
 
-- (void)loadAudioUnit:(AVAudioUnit *)unit{
-    
-    AVAudioEngine *engine = self.engine;
-    
-    //音频输入口
-    AVAudioInputNode *input = engine.inputNode;
-    //音频输出口
-    AVAudioOutputNode *output = engine.outputNode;
-    
-    //把混响附着到音频引擎
-    [engine attachNode:unit];
-    
-    //使用音频引擎连接各个节点
-    
-    //        1.输入口连接效果器可对比咱们的图来看
-    
-    //        Format:格式是咱们输入口在主线的一个格式
-    [engine connect:input to:unit format:[input inputFormatForBus:0]];
-    
-    //        2.效果器连接输出口
-    [engine connect:unit to:output format:[input inputFormatForBus:0]];
-    
-    BOOL isSuccess = [engine startAndReturnError:nil];
-    
-    if (isSuccess) {
-        NSLog(@"audioEngin启动成功!");
-    }
-    
-}
-
 #pragma mark - playAndPause 播放和暂停音乐
 - (void)playAndPause:(UIButton *)sender{
     
@@ -199,11 +153,51 @@
     
 }
 
-#pragma mark - sliderValueChanged 
-- (void)sliderValueChanged:(UISlider *)slider{
+#pragma mark - UITableViewDelegate and UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    wetDryValueLabel.text = [NSString stringWithFormat:@"%.f",slider.value];
+    static NSString *identifier = @"cell";
+    XXLAudioEngineCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
+    if (!cell) {
+        cell = [[XXLAudioEngineCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identifier category:AudioEngineCellStyleReverb];
+    }
+    
+    cell.delegate = self;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 200;
+    
+}
+
+#pragma mark - XXLAudioEngineCellDelegate
+- (void)onWetDryMixValueChange:(float)value{
+    
+    wetDryMixValue = value;
+    [self prepareAudioEffect];
+    
+}
+
+- (void)onFactoryPresetValueChange:(NSInteger)value{
+    
+    factoryPresetValue = value;
     [self prepareAudioEffect];
     
 }
